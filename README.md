@@ -75,7 +75,7 @@ Obviously, not all instruments support all articulations: specifically, only str
 
 To see this working after you've installed the files to the right place, load one of the existing SFZ files, e.g., with the excellent [sfizz](https://github.com/sfztools/sfizz):
 
-	sfizz_jack -client_name 0LM-1st-violin-SEC-KS-CC14.sfz
+	sfizz_jack 0LM-1st-violin-SEC-KS-CC14.sfz
 
 hook it up to a real or virtual keyboard, and then use some tool to send CC messages, e.g., with [SendMIDI](https://github.com/gbevin/SendMIDI):
 
