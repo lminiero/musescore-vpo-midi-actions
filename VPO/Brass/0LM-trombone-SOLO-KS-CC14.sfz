@@ -35,10 +35,14 @@
 //
 //==============================================================
 
+<control>
+label_cc14=CC based switch
+set_cc14=40
+
 // -------------- high vel --------------
 <group>
 // sustain by default
-locc14=0 hicc14=0
+locc14=0 hicc14=19
 sw_label=CC14 Sustain
 
 amp_random=1 // randomize like a real player (PB)
@@ -129,7 +133,7 @@ volume=2
 // -------------- low vel --------------
 <group>
 // sustain by default
-locc14=0 hicc14=0
+locc14=0 hicc14=19
 sw_label=CC14 Sustain
 
 amp_random=1 // randomize like a real player (PB)
@@ -244,7 +248,7 @@ volume=0.5
 // -------------- high vel --------------
 <group>
 // sustain by default
-locc14=2 hicc14=2
+locc14=40 hicc14=59
 sw_label=CC14 Normal Mod Wheel
 
 // mod wheel slows attack (PB)
@@ -337,7 +341,7 @@ volume=2
 // -------------- low vel --------------
 <group>
 // sustain by default
-locc14=2 hicc14=2
+locc14=40 hicc14=59
 sw_label=CC14 Normal Mod Wheel
 
 // mod wheel slows attack (PB)
@@ -465,7 +469,7 @@ volume=0.5
 // -------------- high vel --------------
 <group>
 // sustain by default
-locc14=3 hicc14=3
+locc14=60 hicc14=79
 sw_label=CC14 Accent
 
 // randomize like a real player(PB)
@@ -568,7 +572,7 @@ volume=1
 // -------------- low vel --------------
 <group>
 // sustain by default
-locc14=3 hicc14=3
+locc14=60 hicc14=79
 sw_label=CC14 Accent
 
 // randomize like a real player(PB)
@@ -693,7 +697,7 @@ volume=-0.5
 // -------------- high vel --------------
 <group>
 // sustain by default
-locc14=3 hicc14=3
+locc14=60 hicc14=79
 sw_label=CC14 Accent
 
 // allow time for accent before sustain takes over
@@ -788,7 +792,7 @@ volume=2
 // -------------- low vel --------------
 <group>
 // sustain by default
-locc14=3 hicc14=3
+locc14=60 hicc14=79
 sw_label=CC14 Accent
 
 // allow time for accent before sustain takes over
@@ -906,7 +910,7 @@ volume=0.5
 // -------------- high vel --------------
 <group>
 // sustain by default
-locc14=4 hicc14=4
+locc14=80 hicc14=99
 sw_label=CC14 Staccato
 
 // randomize like a real player(PB)
@@ -1009,7 +1013,7 @@ volume=4
 // -------------- low vel --------------
 <group>
 // sustain by default
-locc14=4 hicc14=4
+locc14=80 hicc14=99
 sw_label=CC14 Staccato
 
 // randomize like a real player(PB)

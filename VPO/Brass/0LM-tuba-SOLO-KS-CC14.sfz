@@ -34,9 +34,13 @@
 //         Tuba Sustain
 // ------------------------------
 
+<control>
+label_cc14=CC based switch
+set_cc14=40
+
 <group>
 // sustain by default
-locc14=0 hicc14=0
+locc14=0 hicc14=19
 sw_label=CC14 Sustain
 
 ampeg_attack=0.2
@@ -152,7 +156,7 @@ pitch_keycenter=e3
 
 <group>
 // sustain by default
-locc14=2 hicc14=2
+locc14=40 hicc14=59
 sw_label=CC14 Normal Mod Wheel
 
 // mod wheel slows attack (PB)
@@ -267,7 +271,7 @@ pitch_keycenter=e3
 
 <group>
 // sustain by default
-locc14=2 hicc14=2
+locc14=40 hicc14=59
 sw_label=CC14 Normal Mod Wheel
 
 volume=-6
@@ -414,7 +418,7 @@ pitch_keycenter=c#4
 
 <group>
 // sustain by default
-locc14=3 hicc14=3
+locc14=60 hicc14=79
 sw_label=CC14 Accent
 
 ampeg_attack=0.03
@@ -542,7 +546,7 @@ pitch_keycenter=c#4
 
 <group>
 // sustain by default
-locc14=3 hicc14=3
+locc14=60 hicc14=79
 sw_label=CC14 Accent
 
 // allow time for accent before sustain takes over
@@ -667,7 +671,7 @@ pitch_keycenter=e3
 
 <group>
 // sustain by default
-locc14=4 hicc14=4
+locc14=80 hicc14=99
 sw_label=CC14 Staccato
 
 ampeg_attack=0.03

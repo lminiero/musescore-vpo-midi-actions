@@ -32,9 +32,13 @@
 //
 //==============================================================
 
+<control>
+label_cc14=CC based switch
+set_cc14=40
+
 <group>
 // sustain by default
-locc14=0 hicc14=0
+locc14=0 hicc14=19
 sw_label=CC14 Sustain
  // slower release for slower notes = legato effect (PB)
 ampeg_release=2.1
@@ -114,7 +118,7 @@ eq2_gain=-11.2
 
 <group>
 // sustain by default
-locc14=1 hicc14=1
+locc14=20 hicc14=39
 sw_label=CC14 Tremolo
 
 ampeg_attack=0.03
@@ -208,7 +212,7 @@ eq2_gain=-11.4
 
 <group>
 // sustain by default
-locc14=2 hicc14=2
+locc14=40 hicc14=59
 sw_label=CC14 Normal Mod Wheel
 
 ampeg_attackcc1=0.6 // mod wheel slows attack
@@ -291,7 +295,7 @@ eq2_gain=-11.2
 
 <group>
 // sustain by default
-locc14=2 hicc14=2
+locc14=40 hicc14=59
 sw_label=CC14 Normal Mod Wheel
 
 // mod wheel slows attack (PB)
@@ -553,7 +557,7 @@ volume=2
 
 <group>
 // sustain by default
-locc14=2 hicc14=2
+locc14=40 hicc14=59
 sw_label=CC14 Normal Mod Wheel
 
 // mod wheel slows attack (PB)
@@ -839,7 +843,7 @@ volume=0
 
 <group>
 // sustain by default
-locc14=3 hicc14=3
+locc14=60 hicc14=79
 sw_label=CC14 Accent
  //Begin Group 1
 
@@ -1096,7 +1100,7 @@ volume=10
 
 <group>
 // sustain by default
-locc14=3 hicc14=3
+locc14=60 hicc14=79
 sw_label=CC14 Accent
  //Begin Group 2
 seq_length=2
@@ -1361,7 +1365,7 @@ volume=8
 
 <group>
 // sustain by default
-locc14=3 hicc14=3
+locc14=60 hicc14=79
 sw_label=CC14 Accent
  // slower release for slower notes = legato effect (PB)
 // allow time for accent before sustain takes over
@@ -1456,7 +1460,7 @@ eq2_gain=-11.2
 
 <group>
 // sustain by default
-locc14=4 hicc14=4
+locc14=80 hicc14=99
 sw_label=CC14 Staccato
  //Begin Group 1
 
@@ -1713,7 +1717,7 @@ volume=10
 
 <group>
 // sustain by default
-locc14=4 hicc14=4
+locc14=80 hicc14=99
 sw_label=CC14 Staccato
  //Begin Group 2
 seq_length=2
@@ -1981,7 +1985,7 @@ volume=8
 
 <group>
 // sustain by default
-locc14=5 hicc14=5
+locc14=100 hicc14=119
 sw_label=CC14 Pizzicato
 
 ampeg_attack=0.03

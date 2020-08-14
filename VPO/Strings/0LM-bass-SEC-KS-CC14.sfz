@@ -43,9 +43,13 @@
 //        Basses Sustain
 // ------------------------------
 
+<control>
+label_cc14=CC based switch
+set_cc14=40
+
 <group>
 // sustain by default
-locc14=0 hicc14=0
+locc14=0 hicc14=19
 sw_label=CC14 Sustain
 
 // randomize like a real player(PB)
@@ -164,7 +168,7 @@ pitch_keycenter=c4
 
 <group>
 // sustain by default
-locc14=1 hicc14=1
+locc14=20 hicc14=39
 sw_label=CC14 Tremolo
 
 // randomize like a real player(PB)
@@ -373,7 +377,7 @@ volume=5
 
 <group>
 // sustain by default
-locc14=2 hicc14=2
+locc14=40 hicc14=59
 sw_label=CC14 Normal Mod Wheel
 
 // mod wheel slows attack (PB)
@@ -497,7 +501,7 @@ pitch_keycenter=c4
 
 <group>
 // sustain by default
-locc14=2 hicc14=2
+locc14=40 hicc14=59
 sw_label=CC14 Normal Mod Wheel
 
 // mod wheel slows attack (PB)
@@ -635,7 +639,7 @@ pitch_keycenter=c4
 
 <group>
 // sustain by default
-locc14=2 hicc14=2
+locc14=40 hicc14=59
 sw_label=CC14 Normal Mod Wheel
 
 // mod wheel slows attack (PB)
@@ -801,7 +805,7 @@ pitch_keycenter=c4
 
 <group>
 // sustain by default
-locc14=3 hicc14=3
+locc14=60 hicc14=79
 sw_label=CC14 Accent
 
 // randomize like a real player(PB)
@@ -935,7 +939,7 @@ pitch_keycenter=c4
 
 <group>
 // sustain by default
-locc14=3 hicc14=3
+locc14=60 hicc14=79
 sw_label=CC14 Accent
 
 // randomize like a real player(PB)
@@ -1083,7 +1087,7 @@ pitch_keycenter=c4
 
 <group>
 // sustain by default
-locc14=3 hicc14=3
+locc14=60 hicc14=79
 sw_label=CC14 Accent
 
 // allow time for accent before sustain takes over
@@ -1229,7 +1233,7 @@ pitch_keycenter=c4
 
 <group>
 // sustain by default
-locc14=4 hicc14=4
+locc14=80 hicc14=99
 sw_label=CC14 Staccato
 
 // randomize like a real player(PB)
@@ -1363,7 +1367,7 @@ pitch_keycenter=c4
 
 <group>
 // sustain by default
-locc14=4 hicc14=4
+locc14=80 hicc14=99
 sw_label=CC14 Staccato
 
 // randomize like a real player(PB)
@@ -1512,7 +1516,7 @@ pitch_keycenter=c4
 
 <group>
 // sustain by default
-locc14=5 hicc14=5
+locc14=100 hicc14=119
 sw_label=CC14 Pizzicato
 
 ampeg_attack=0.03

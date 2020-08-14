@@ -27,33 +27,33 @@ config.tmpFolder = '/tmp';
 // objects directly on the related group, instead of templating as we do
 var sustain = {
 	$: { name: "cc14_0" },
-	descr: "Send CC14 0 (sustain)",
+	descr: "Send CC14 0-19 (sustain)",
 	controller: { $: { ctrl: "14", value: "0" } }
 };
 var tremolo = {
 	$: { name: "cc14_1" },
-	descr: "Send CC14 1 (tremolo)",
-	controller: { $: { ctrl: "14", value: "1" } }
+	descr: "Send CC14 20-39 (tremolo)",
+	controller: { $: { ctrl: "14", value: "20" } }
 };
 var modWheel = {
 	$: { name: "cc14_2" },
-	descr: "Send CC14 2 (mod-wheel)",
-	controller: { $: { ctrl: "14", value: "2" } }
+	descr: "Send CC14 40-59 (mod-wheel)",
+	controller: { $: { ctrl: "14", value: "40" } }
 };
 var accent = {
 	$: { name: "cc14_3" },
-	descr: "Send CC14 3 (accent)",
-	controller: { $: { ctrl: "14", value: "3" } }
+	descr: "Send CC14 60-79 (accent)",
+	controller: { $: { ctrl: "14", value: "60" } }
 };
 var staccato = {
 	$: { name: "cc14_4" },
-	descr: "Send CC14 4 (staccato)",
-	controller: { $: { ctrl: "14", value: "4" } }
+	descr: "Send CC14 80-99 (staccato)",
+	controller: { $: { ctrl: "14", value: "80" } }
 };
 var pizzicato = {
 	$: { name: "cc14_5" },
-	descr: "Send CC14 5 (pizzicato)",
-	controller: { $: { ctrl: "14", value: "5" } }
+	descr: "Send CC14 100-119 (pizzicato)",
+	controller: { $: { ctrl: "14", value: "100" } }
 }
 // This is where we actually set which action to add to which instrument:
 // notice that, even in the case of a single action, you'll need an array

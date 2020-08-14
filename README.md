@@ -60,16 +60,16 @@ If you need more instruments, please refer to the changes I made to obtain the e
 
 Installing them should be very easy, as all you need to do is copy (or create a symbolic link for) all the `.sfz` file in the VPO subfolders to the corresponding folder where you installed VPO itself. To avoid conflicts and keep the distinction between original and new files clearer, all the SFZ files from this repo are prefixed with `0LM-`, and use the `-KS-CC14` suffix to clarify what is used as a switch.
 
-For what concerns the mappings, I kept pretty much the same order as the original `-KS-C2`, `-KS-C5` and `-KS-C6` files, which should make your life easier if you were already using those. Specifically:
+For what concerns the mappings, I kept pretty much the same order as the original `-KS-C2`, `-KS-C5` and `-KS-C6` files, which should make your life easier if you were already using those. The CC values are a range, instead of a single value, to make them easier to use in UIs. Specifically:
 
 | Articulation | -KS-C2 | -KS-C5 | -KS-C6 | -KS-CC14 |
 |:------------:|:------:|:------:|:------:|:--------:|
-| Sustain | C2 | C5 | C6 | 0 |
-| Tremolo | C#2 | C#5 | C#6 | 1 |
-| Normal Mod Wheel | D2 | D5 | D6 | 2 |
-| Accent | D#2 | D#5 | D#6 | 3 |
-| Staccato | E2 | E5 | E6 | 4 |
-| Pizzicato | F2 | F5 | F6 | 5 |
+| Sustain | C2 | C5 | C6 | 0-19 |
+| Tremolo | C#2 | C#5 | C#6 | 20-39 |
+| Normal Mod Wheel | D2 | D5 | D6 | 40-59 |
+| Accent | D#2 | D#5 | D#6 | 60-79 |
+| Staccato | E2 | E5 | E6 | 80-99 |
+| Pizzicato | F2 | F5 | F6 | 100-119 |
 
 Obviously, not all instruments support all articulations: specifically, only strings support them all, while woodwinds and brass instruments won't react to `Tremolo` and `Pizzicato`.
 
@@ -81,7 +81,7 @@ hook it up to a real or virtual keyboard, and then use some tool to send CC mess
 
 	a2jmidi_bridge
 	# Connect Jack side of the bridge to sfizz, before using sendmidi
-	sendmidi dev "playback" cc 14 4
+	sendmidi dev "playback" cc 14 80
 	# Playing the strings should now be staccato
 
 Sending the different CC 14 values should result in the samples being used to change.
@@ -135,7 +135,7 @@ TODO. (but as anticipated will be based on the excellent https://github.com/mich
 
 While this "kinda" works already, it has several issues, that I'm addressing as I go along. Here's a short list of the main things I noticed so far (even though there may be more I'm not aware of yet).
 
-* When importing MIDI generated using the CC14 messages in Ardour, you'll need to change the controller mode from `Linear` to `Discrete`, otherwise a transition from, e.g., `5` (pizzicato) to `2` (normal) will go through `4` and `3` as well, which is NOT what you want. An easy way to do that is to show the Automation for Controller 14, and right-click it to change the mode. In the future, when I'll work on an Ardour template, I'll make sure this is done already for the pre-existing tracks.
+* When importing MIDI generated using the CC14 messages in Ardour, you'll need to change the controller mode from `Linear` to `Discrete`, otherwise a transition from, e.g., `100` (pizzicato) to `40` (normal) will go through all the intermediate values as well, which is NOT what you want. An easy way to do that is to show the Automation for Controller 14, and right-click it to change the mode. In the future, when I'll work on an Ardour template, I'll make sure this is done already for the pre-existing tracks.
 
 * While MuseScore adds the MIDI CC 14 messages just fine, it looks like they're sent _after_ the note they're tied to (not sure if always, or just some times), which of course makes it all wrong when you're trying to play it. A partial workaround is to put the stave text with the MIDI action on the note/rest _before_ the one you want to affect (assuming this behaviour is consistent, that is).
 

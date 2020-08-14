@@ -38,10 +38,14 @@
 //      1st Violins Sustain
 // ------------------------------
 
+<control>
+label_cc14=CC based switch
+set_cc14=40
+
 <group>
 // sustain by default
-locc14=0 hicc14=0
-sw_label=CC14 Sustain
+locc14=0 hicc14=19
+//sw_label=CC14 Sustain
 
 // randomize like a real player(PB)
 pitch_random=5
@@ -237,8 +241,8 @@ eq2_gain=-11.9
 
 <group>
 // sustain by default
-locc14=1 hicc14=1
-sw_label=CC14 Tremolo
+locc14=20 hicc14=39
+//sw_label=CC14 Tremolo
 
 volume=-5.7
 // randomize like a real player(PB)
@@ -405,8 +409,8 @@ eq2_gain=-10.8
 
 <group>
 // sustain by default
-locc14=1 hicc14=1
-sw_label=CC14 Tremolo
+locc14=20 hicc14=39
+//sw_label=CC14 Tremolo
 
 volume=-3
 // randomize like a real player(PB)
@@ -532,8 +536,8 @@ eq2_gain=-11.1
 
 <group>
 // sustain by default
-locc14=2 hicc14=2
-sw_label=CC14 Normal Mod Wheel
+locc14=40 hicc14=59
+//sw_label=CC14 Normal Mod Wheel
 
 volume=-6.5
 // mod wheel slows attack (PB)
@@ -670,8 +674,8 @@ pitch_keycenter=a#6
 
 <group>
 // sustain by default
-locc14=2 hicc14=2
-sw_label=CC14 Normal Mod Wheel
+locc14=40 hicc14=59
+//sw_label=CC14 Normal Mod Wheel
 
 volume=-6.5
 // mod wheel slows attack (PB)
@@ -823,8 +827,8 @@ pitch_keycenter=a#6
 
 <group>
 // sustain by default
-locc14=2 hicc14=2
-sw_label=CC14 Normal Mod Wheel
+locc14=40 hicc14=59
+//sw_label=CC14 Normal Mod Wheel
 
 // mod wheel slows attack (PB)
 ampeg_attackcc1=0.5
@@ -1033,8 +1037,8 @@ eq2_gain=-11.9
 
 <group>
 // sustain by default
-locc14=3 hicc14=3
-sw_label=CC14 Accent
+locc14=60 hicc14=79
+//sw_label=CC14 Accent
 
 // randomize like a real player(PB)
 pitch_random=5
@@ -1165,8 +1169,8 @@ pitch_keycenter=a#6
 
 <group>
 // sustain by default
-locc14=3 hicc14=3
-sw_label=CC14 Accent
+locc14=60 hicc14=79
+//sw_label=CC14 Accent
 
 // randomize like a real player(PB)
 pitch_random=5
@@ -1312,8 +1316,8 @@ pitch_keycenter=a#6
 
 <group>
 // sustain by default
-locc14=3 hicc14=3
-sw_label=CC14 Accent
+locc14=60 hicc14=79
+//sw_label=CC14 Accent
 
 // allow time for accent before sustain takes over
 delay=0.20
@@ -1509,8 +1513,8 @@ eq2_gain=-11.9
 
 <group>
 // sustain by default
-locc14=4 hicc14=4
-sw_label=CC14 Staccato
+locc14=80 hicc14=99
+//sw_label=CC14 Staccato
 
 // randomize like a real player(PB)
 pitch_random=5
@@ -1641,8 +1645,8 @@ pitch_keycenter=a#6
 
 <group>
 // sustain by default
-locc14=4 hicc14=4
-sw_label=CC14 Staccato
+locc14=80 hicc14=99
+//sw_label=CC14 Staccato
 
 // randomize like a real player(PB)
 pitch_random=5
@@ -1789,8 +1793,8 @@ pitch_keycenter=a#6
 
 <group>
 // sustain by default
-locc14=5 hicc14=5
-sw_label=CC14 Pizzicato
+locc14=100 hicc14=119
+//sw_label=CC14 Pizzicato
 
 ampeg_attack=0.03
 // randomize like a real player(PB)

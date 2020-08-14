@@ -33,6 +33,9 @@
 set_cc11=64  // expression
 set_cc10=64  // pan (not used but Sforzando will default to 0 = 100%L when
              //  other CC settings are present)
+label_cc14=CC based switch
+set_cc14=40
+
 
 
 
@@ -40,7 +43,7 @@ set_cc10=64  // pan (not used but Sforzando will default to 0 = 100%L when
 
 <group>
 // sustain by default
-locc14=0 hicc14=0
+locc14=0 hicc14=19
 sw_label=CC14 Sustain
 
  // slightly longer attack (PB)
@@ -131,7 +134,7 @@ pitch_keycenter=d#6 lokey=c#6 hikey=a#6
 
 <group>
 // sustain by default
-locc14=0 hicc14=0
+locc14=0 hicc14=19
 sw_label=CC14 Sustain
 
  // slightly longer attack (PB)
@@ -256,7 +259,7 @@ set_cc10=64  // pan (not used but Sforzando will default to 0 = 100%L when
 
 <group>
 // sustain by default
-locc14=2 hicc14=2
+locc14=40 hicc14=59
 sw_label=CC14 Normal Mod Wheel
 
 // mod wheel slows attack (PB)
@@ -350,7 +353,7 @@ pitch_keycenter=d#6 lokey=c#6 hikey=a#6
 
 <group>
 // sustain by default
-locc14=2 hicc14=2
+locc14=40 hicc14=59
 sw_label=CC14 Normal Mod Wheel
 
 // mod wheel slows attack (PB)
@@ -489,7 +492,7 @@ set_cc10=64  // pan (not used but Sforzando will default to 0 = 100%L when
 
 <group>
 // sustain by default
-locc14=3 hicc14=3
+locc14=60 hicc14=79
 sw_label=CC14 Accent
 
 // create staccato from sustain (PB)
@@ -601,7 +604,7 @@ pitch_keycenter=d#6 lokey=c#6 hikey=a#6
 
 <group>
 // sustain by default
-locc14=3 hicc14=3
+locc14=60 hicc14=79
 sw_label=CC14 Accent
 
 // create staccato from sustain (PB)
@@ -731,7 +734,7 @@ set_cc10=64  // pan (not used but Sforzando will default to 0 = 100%L when
 
 <group>
 // sustain by default
-locc14=3 hicc14=3
+locc14=60 hicc14=79
 sw_label=CC14 Accent
 
 // allow time for accent before sustain takes over
@@ -847,7 +850,7 @@ pitch_keycenter=d#6 lokey=c#6 hikey=a#6
 
 <group>
 // sustain by default
-locc14=3 hicc14=3
+locc14=60 hicc14=79
 sw_label=CC14 Accent
 
 // allow time for accent before sustain takes over
@@ -996,7 +999,7 @@ set_cc10=64  // pan (not used but Sforzando will default to 0 = 100%L when
 
 <group>
 // sustain by default
-locc14=4 hicc14=4
+locc14=80 hicc14=99
 sw_label=CC14 Staccato
 
 // create staccato from sustain (PB)
@@ -1108,7 +1111,7 @@ pitch_keycenter=d#6 lokey=c#6 hikey=a#6
 
 <group>
 // sustain by default
-locc14=4 hicc14=4
+locc14=80 hicc14=99
 sw_label=CC14 Staccato
 
 // create staccato from sustain (PB)
