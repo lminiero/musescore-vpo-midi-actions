@@ -90,6 +90,10 @@ config.midiActions = {
 	'brass.tuba': [
 		sustain, modWheel, accent, staccato
 	],
+	// Timpani
+	'drum.timpani': [
+		tremolo, modWheel
+	],
 	// Violin
 	'strings.violin': [
 		sustain, tremolo, modWheel, accent, staccato, pizzicato
