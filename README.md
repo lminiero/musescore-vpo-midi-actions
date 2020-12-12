@@ -52,7 +52,7 @@ If you're wondering why I chose CC 14 and not another controller, that's simply 
 
 The `VPO` folder contains a set of patches to react to CC 14 messages for changing articulations. They're basically an edited version of the pre-existing `-KS` patches, configured to react to CC14 instead using the [`loccN` and `hiccN` opcodes](https://sfzformat.com/opcodes/loccN). Since I only needed a subset of the available instruments (to go with the Symphonic Orchestra template in MuseScore), you won't find them all here, but just some, specifically:
 
-* Woodwinds: solo flute, oboe, clarinet and bassoon;
+* Woodwinds: solo piccolo, flute, oboe, clarinet and bassoon;
 * Brass: solo french horn, trumpet, trombone and tuba;
 * Strings: section for 1st violins, 2nd violins, violas, celli and contrabasses.
 
