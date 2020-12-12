@@ -135,6 +135,8 @@ TODO. (but as anticipated will be based on the excellent https://github.com/mich
 
 While this "kinda" works already, it has several issues, that I'm addressing as I go along. Here's a short list of the main things I noticed so far (even though there may be more I'm not aware of yet).
 
+* The outout of `add-actions.js` seems often broken, if scoring has already started, and there are tempo changes. You may want to apply the changes on a newly created score instead, or adding the actions to the XML portion of the MuseScore file manually.
+
 * When importing MIDI generated using the CC14 messages in Ardour, you'll need to change the controller mode from `Linear` to `Discrete`, otherwise a transition from, e.g., `100` (pizzicato) to `40` (normal) will go through all the intermediate values as well, which is NOT what you want. An easy way to do that is to show the Automation for Controller 14, and right-click it to change the mode. In the future, when I'll work on an Ardour template, I'll make sure this is done already for the pre-existing tracks.
 
 * While MuseScore adds the MIDI CC 14 messages just fine, it looks like they're sent _after_ the note they're tied to (not sure if always, or just some times), which of course makes it all wrong when you're trying to play it. A partial workaround is to put the stave text with the MIDI action on the note/rest _before_ the one you want to affect (assuming this behaviour is consistent, that is).
