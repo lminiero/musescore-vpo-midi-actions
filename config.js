@@ -58,6 +58,10 @@ var pizzicato = {
 // This is where we actually set which action to add to which instrument:
 // notice that, even in the case of a single action, you'll need an array
 config.midiActions = {
+	// Piccolo
+	'wind.flutes.flute.piccolo': [
+		sustain, modWheel, accent, staccato
+	],
 	// Flute
 	'wind.flutes.flute': [
 		sustain, modWheel, accent, staccato
