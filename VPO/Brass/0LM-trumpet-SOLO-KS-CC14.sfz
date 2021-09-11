@@ -38,6 +38,7 @@
 <control>
 label_cc14=CC based switch
 set_cc14=40
+label_cc1=Mod Wheel
 
 // -------------- high vol --------------
 <group>
@@ -1005,8 +1006,8 @@ volume=4
 // -------------- high vol --------------
 <group>
 // sustain by default
-locc14=60 hicc14=79
-sw_label=CC14 Accent
+locc14=40 hicc14=59
+sw_label=CC14 Normal Mod Wheel
 
 // randomize like a real player(PB)
 pitch_random=5
@@ -1238,8 +1239,8 @@ hikey=c6
 // -------------- low vol --------------
 <group>
 // sustain by default
-locc14=60 hicc14=79
-sw_label=CC14 Accent
+locc14=40 hicc14=59
+sw_label=CC14 Normal Mod Wheel
 
 // randomize like a real player(PB)
 pitch_random=5
@@ -1489,8 +1490,8 @@ volume=4
 // -------------- high vol --------------
 <group>
 // sustain by default
-locc14=60 hicc14=79
-sw_label=CC14 Accent
+locc14=40 hicc14=59
+sw_label=CC14 Normal Mod Wheel
 
 // allow time for accent before sustain takes over
 delay=0.15
@@ -1720,8 +1721,8 @@ hikey=c6
 // -------------- low vol --------------
 <group>
 // sustain by default
-locc14=60 hicc14=79
-sw_label=CC14 Accent
+locc14=40 hicc14=59
+sw_label=CC14 Normal Mod Wheel
 
 // allow time for accent before sustain takes over
 delay=0.15

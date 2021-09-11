@@ -41,6 +41,7 @@
 <control>
 label_cc14=CC based switch
 set_cc14=40
+label_cc1=Mod Wheel
 
 <group>
 // sustain by default

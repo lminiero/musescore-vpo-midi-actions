@@ -37,11 +37,13 @@
 <control>
 label_cc14=CC based switch
 set_cc14=40
+label_cc1=Mod Wheel
 
 <group>
 // sustain by default
 locc14=0 hicc14=19
 sw_label=CC14 Sustain
+label_cc1=Mod Wheel
 
 volume=3
 ampeg_attack=0.2 // longer attack for sustain (PB)

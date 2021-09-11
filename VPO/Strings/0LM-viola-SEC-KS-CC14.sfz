@@ -36,6 +36,7 @@
 <control>
 label_cc14=CC based switch
 set_cc14=40
+label_cc1=Mod Wheel
 
 <group>
 // sustain by default
@@ -545,7 +546,7 @@ eq1_gain=-11.4
 
 eq2_freq=815.5
 eq2_bw=2
-eq2_gain=-10.8
+eq2_gain=-10.8
 
 
 

@@ -1,17 +1,17 @@
 //==============================================================
-// French Horn Section : Key Switches
+// French Horn Section : Key Switches + Dynamic Cross Fade
 //
 //   This is a combination of
 //
-//     french-horn-SEC-sustain.sfz
-//     french-horn-SEC-normal-mod-wheel.sfz
-//     french-horn-SEC-accent.sfz
-//     french-horn-SEC-staccato.sfz
+//     french-horn-SEC-sustain-DXF.sfz
+//     french-horn-SEC-normal-DXF.sfz
+//     french-horn-SEC-accent-DXF.sfz
+//     french-horn-SEC-staccato-DXF.sfz
 //
 //   ... to create a Key Switchable patch
 //
 //     key switch c6  = Sustain
-//     key switch d6  = Normal Mod Wheel
+//     key switch d6  = Normal
 //     key switch d#6 = Accent
 //     key switch e6  = Staccato
 //
@@ -20,21 +20,29 @@
 //==============================================================
 
 //==============================================================
-// French Horn Section : Sustain
+// French Horn Section : Sustain + Dynamic Cross Fade
 //
 //   Horns Sus.sfz from Mattias Westlund - http://mattiaswestlund.net
 //
 //   modified by Paul Battersby - http://virtualplaying.com
 //
 //==============================================================
-
-// ------------------ high velocity --------------------
+<control>
+// set some sfz 2.0 default values
+// mod wheel
+set_cc1=64
+// pan (not used but Sforzando will default to 0 = 100%L when
+//  other CC settings are present)
+set_cc10=64
 
 <control>
 label_cc14=CC based switch
 set_cc14=40
 label_cc1=Mod Wheel
 
+
+// ------------------ high velocity --------------------
+
 <group>
 // sustain by default
 locc14=0 hicc14=19
@@ -48,18 +56,22 @@ amp_random=1
 
 ampeg_release=0.6
 
-// fade in (PB)
-xfin_lovel=75
-xfin_hivel=127
-
-<region>
+// cc1 (mod wheel) adjusts crossfade and volume (PB)
+xfin_locc1=64
+xfin_hicc1=127
+// this provides a smoother x-fade transition
+xf_cccurve=gain
+// cc1 controls gain after lowering volume of all samples by 24db (PB)
+gain_cc1=24
+// reduce velocity tracking, use cc1 for volume (PB)
+amp_veltrack=60<region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e2-PB-loop.wav
 lokey=b1
 hikey=f2
 pitch_keycenter=e2
 tune=15
 pan=-5
-volume=5
+volume=-19
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-g2-PB-loop.wav
@@ -68,7 +80,7 @@ hikey=g#2
 pitch_keycenter=g2
 tune=0
 pan=-5
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-a#2-PB-loop.wav
@@ -77,7 +89,7 @@ hikey=b2
 pitch_keycenter=a#2
 tune=-5
 pan=5
-volume=4.5
+volume=-19.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-c#3-PB-loop.wav
@@ -86,7 +98,7 @@ hikey=d3
 pitch_keycenter=c#3
 tune=-5
 pan=0
-volume=2
+volume=-22
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e3-PB-loop.wav
@@ -95,7 +107,7 @@ hikey=f3
 pitch_keycenter=e3
 tune=10
 pan=5
-volume=3.5
+volume=-20.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-g3-PB-loop.wav
@@ -104,7 +116,7 @@ hikey=g#3
 pitch_keycenter=g3
 tune=0
 pan=5
-volume=2
+volume=-22
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-a#3-PB-loop.wav
@@ -113,7 +125,7 @@ hikey=b3
 pitch_keycenter=a#3
 tune=0
 pan=5
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-c#4-PB-loop.wav
@@ -122,7 +134,7 @@ hikey=d4
 pitch_keycenter=c#4
 tune=0
 pan=0
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e4-PB-loop.wav
@@ -131,7 +143,7 @@ hikey=f4
 pitch_keycenter=e4
 tune=-5
 pan=10
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-g4-PB-loop.wav
@@ -140,7 +152,7 @@ hikey=g#4
 pitch_keycenter=g4
 tune=-5
 pan=0
-volume=5
+volume=-19
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-a#4-PB-loop.wav
@@ -149,7 +161,7 @@ hikey=b4
 pitch_keycenter=a#4
 tune=0
 pan=0
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-c#5-PB-loop.wav
@@ -158,7 +170,7 @@ hikey=d5
 pitch_keycenter=c#5
 tune=5
 pan=5
-volume=3
+volume=-21
 
 <region>
 lokey=d#5
@@ -167,7 +179,7 @@ pitch_keycenter=e5
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e5-PB-loop.wav
 tune=0
 pan=20
-volume=1
+volume=-23
 
 // ------------------ low velocity --------------------
 <group>
@@ -184,8 +196,16 @@ amp_random=1
 ampeg_release=0.6
 
 // fade out (PB)
-xfout_lovel=75
-xfout_hivel=127
+
+// cc1 (mod wheel) adjusts crossfade and volume (PB)
+xfout_locc1=64
+xfout_hicc1=127
+// this provides a smoother x-fade transition
+xf_cccurve=gain
+// cc1 controls gain after lowering volume of all samples by 24db (PB)
+gain_cc1=24
+// reduce velocity tracking, use cc1 for volume (PB)
+amp_veltrack=60
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e2-PB-loop.wav
@@ -194,7 +214,7 @@ hikey=f2
 pitch_keycenter=e2
 tune=0
 pan=0
-volume=8
+volume=-16
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-g2-PB-loop.wav
@@ -203,7 +223,7 @@ hikey=g#2
 pitch_keycenter=g2
 tune=0
 pan=0
-volume=4
+volume=-20
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-a#2-PB-loop.wav
@@ -212,7 +232,7 @@ hikey=b2
 pitch_keycenter=a#2
 tune=0
 pan=5
-volume=5.5
+volume=-18.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-c#3-PB-loop.wav
@@ -221,7 +241,7 @@ hikey=d3
 pitch_keycenter=c#3
 tune=0
 pan=-5
-volume=7
+volume=-17
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e3-PB-loop.wav
@@ -230,7 +250,7 @@ hikey=f3
 pitch_keycenter=e3
 tune=0
 pan=5
-volume=4.5
+volume=-19.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-g3-PB-loop.wav
@@ -239,7 +259,7 @@ hikey=g#3
 pitch_keycenter=g3
 tune=0
 pan=0
-volume=2
+volume=-22
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-a#3-PB-loop.wav
@@ -248,7 +268,7 @@ hikey=b3
 pitch_keycenter=a#3
 tune=0
 pan=10
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-c#4-PB-loop.wav
@@ -257,7 +277,7 @@ hikey=d4
 pitch_keycenter=c#4
 tune=0
 pan=0
-volume=5
+volume=-19
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e4-PB-loop.wav
@@ -266,7 +286,7 @@ hikey=f4
 pitch_keycenter=e4
 tune=0
 pan=10
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-g4-PB-loop.wav
@@ -275,7 +295,7 @@ hikey=g#4
 pitch_keycenter=g4
 tune=0
 pan=0
-volume=5
+volume=-19
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-a#4-PB-loop.wav
@@ -284,7 +304,7 @@ hikey=b4
 pitch_keycenter=a#4
 tune=0
 pan=10
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-c#5-PB-loop.wav
@@ -293,7 +313,7 @@ hikey=d5
 pitch_keycenter=c#5
 tune=0
 pan=0
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e5-PB-loop.wav
@@ -302,26 +322,36 @@ hikey=f5
 pitch_keycenter=e5
 tune=0
 pan=50
-volume=6
+volume=-18
+
 
 
 
 //==============================================================
-// French Horn Section : Normal Mod Wheel
+// French Horn Section Section : Normal + Dynamic Cross Fade + Attack(cc73)
 //
 //   This is combination of:
 //
-//     french-horn-SEC-sustain.sfz
-//     french-horn-SEc-staccato.sfz
+//     french-horn-SEC-sustain-DXF.sfz
+//     french-horn-SEc-staccato-DXF.sfz
 //
-//   ... where the mod wheel lengthens the attack
+//   ... where cc73 lengthens the attack
+//       and mod wheel controls expression and crossfade
 //
 //   by Paul Battersby - http://virtualplaying.com
 //
 //==============================================================
+<control>
+// set some sfz 2.0 default values
+// mod wheel
+set_cc1=64
+// pan (not used but Sforzando will default to 0 = 100%L when
+//  other CC settings are present)
+set_cc10=64
+
 
 //==============================================================
-// French Horn Section : Sustain
+// French Horn Section : Sustain + Dynamic Cross Fade
 //
 //   Horns Sus.sfz from Mattias Westlund - http://mattiaswestlund.net
 //
@@ -336,8 +366,9 @@ volume=6
 locc14=40 hicc14=59
 sw_label=CC14 Normal Mod Wheel
 
-// mod wheel slows attack (PB)
-ampeg_attackcc1=0.5
+volume=-24
+// cc73 slows attack (PB)
+ampeg_attackcc73=0.5
 ampeg_attack=0.03
 // randomize like a real player(PB)
 pitch_random=5
@@ -347,8 +378,16 @@ amp_random=1
 ampeg_release=0.6
 
 // fade in (PB)
-xfin_lovel=75
-xfin_hivel=127
+
+// cc1 (mod wheel) adjusts crossfade and volume (PB)
+xfin_locc1=64
+xfin_hicc1=127
+// this provides a smoother x-fade transition
+xf_cccurve=gain
+// cc1 controls gain after lowering volume of all samples by 24db (PB)
+gain_cc1=24
+// reduce velocity tracking, use cc1 for volume (PB)
+amp_veltrack=60
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e2-PB-loop.wav
@@ -357,7 +396,7 @@ hikey=f2
 pitch_keycenter=e2
 tune=15
 pan=-5
-volume=5
+volume=-19
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-g2-PB-loop.wav
@@ -366,7 +405,7 @@ hikey=g#2
 pitch_keycenter=g2
 tune=0
 pan=-5
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-a#2-PB-loop.wav
@@ -375,7 +414,7 @@ hikey=b2
 pitch_keycenter=a#2
 tune=-5
 pan=5
-volume=4.5
+volume=-19.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-c#3-PB-loop.wav
@@ -384,7 +423,7 @@ hikey=d3
 pitch_keycenter=c#3
 tune=-5
 pan=0
-volume=2
+volume=-22
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e3-PB-loop.wav
@@ -393,7 +432,7 @@ hikey=f3
 pitch_keycenter=e3
 tune=10
 pan=5
-volume=3.5
+volume=-20.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-g3-PB-loop.wav
@@ -402,7 +441,7 @@ hikey=g#3
 pitch_keycenter=g3
 tune=0
 pan=5
-volume=2
+volume=-22
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-a#3-PB-loop.wav
@@ -411,7 +450,7 @@ hikey=b3
 pitch_keycenter=a#3
 tune=0
 pan=5
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-c#4-PB-loop.wav
@@ -420,7 +459,7 @@ hikey=d4
 pitch_keycenter=c#4
 tune=0
 pan=0
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e4-PB-loop.wav
@@ -429,7 +468,7 @@ hikey=f4
 pitch_keycenter=e4
 tune=-5
 pan=10
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-g4-PB-loop.wav
@@ -438,7 +477,7 @@ hikey=g#4
 pitch_keycenter=g4
 tune=-5
 pan=0
-volume=5
+volume=-19
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-a#4-PB-loop.wav
@@ -447,7 +486,7 @@ hikey=b4
 pitch_keycenter=a#4
 tune=0
 pan=0
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-c#5-PB-loop.wav
@@ -456,7 +495,7 @@ hikey=d5
 pitch_keycenter=c#5
 tune=5
 pan=5
-volume=3
+volume=-21
 
 <region>
 lokey=d#5
@@ -465,7 +504,7 @@ pitch_keycenter=e5
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e5-PB-loop.wav
 tune=0
 pan=20
-volume=1
+volume=-23
 
 // ------------------ low velocity --------------------
 <group>
@@ -473,8 +512,9 @@ volume=1
 locc14=40 hicc14=59
 sw_label=CC14 Normal Mod Wheel
 
-// mod wheel slows attack (PB)
-ampeg_attackcc1=0.5
+volume=-24
+// cc73 slows attack (PB)
+ampeg_attackcc73=0.5
 ampeg_attack=0.03
 // randomize like a real player(PB)
 pitch_random=5
@@ -484,8 +524,16 @@ amp_random=1
 ampeg_release=0.6
 
 // fade out (PB)
-xfout_lovel=75
-xfout_hivel=127
+
+// cc1 (mod wheel) adjusts crossfade and volume (PB)
+xfout_locc1=64
+xfout_hicc1=127
+// this provides a smoother x-fade transition
+xf_cccurve=gain
+// cc1 controls gain after lowering volume of all samples by 24db (PB)
+gain_cc1=24
+// reduce velocity tracking, use cc1 for volume (PB)
+amp_veltrack=60
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e2-PB-loop.wav
@@ -494,7 +542,7 @@ hikey=f2
 pitch_keycenter=e2
 tune=0
 pan=0
-volume=8
+volume=-16
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-g2-PB-loop.wav
@@ -503,7 +551,7 @@ hikey=g#2
 pitch_keycenter=g2
 tune=0
 pan=0
-volume=4
+volume=-20
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-a#2-PB-loop.wav
@@ -512,7 +560,7 @@ hikey=b2
 pitch_keycenter=a#2
 tune=0
 pan=5
-volume=5.5
+volume=-18.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-c#3-PB-loop.wav
@@ -521,7 +569,7 @@ hikey=d3
 pitch_keycenter=c#3
 tune=0
 pan=-5
-volume=7
+volume=-17
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e3-PB-loop.wav
@@ -530,7 +578,7 @@ hikey=f3
 pitch_keycenter=e3
 tune=0
 pan=5
-volume=4.5
+volume=-19.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-g3-PB-loop.wav
@@ -539,7 +587,7 @@ hikey=g#3
 pitch_keycenter=g3
 tune=0
 pan=0
-volume=2
+volume=-22
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-a#3-PB-loop.wav
@@ -548,7 +596,7 @@ hikey=b3
 pitch_keycenter=a#3
 tune=0
 pan=10
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-c#4-PB-loop.wav
@@ -557,7 +605,7 @@ hikey=d4
 pitch_keycenter=c#4
 tune=0
 pan=0
-volume=5
+volume=-19
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e4-PB-loop.wav
@@ -566,7 +614,7 @@ hikey=f4
 pitch_keycenter=e4
 tune=0
 pan=10
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-g4-PB-loop.wav
@@ -575,7 +623,7 @@ hikey=g#4
 pitch_keycenter=g4
 tune=0
 pan=0
-volume=5
+volume=-19
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-a#4-PB-loop.wav
@@ -584,7 +632,7 @@ hikey=b4
 pitch_keycenter=a#4
 tune=0
 pan=10
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-c#5-PB-loop.wav
@@ -593,7 +641,7 @@ hikey=d5
 pitch_keycenter=c#5
 tune=0
 pan=0
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e5-PB-loop.wav
@@ -602,11 +650,11 @@ hikey=f5
 pitch_keycenter=e5
 tune=0
 pan=50
-volume=6
+volume=-18
 
 
 //==============================================================
-// French Horn Section : Staccato
+// French Horn Section : Staccato + Dynamic Cross Fade
 //
 //   Horns Sus.sfz from Mattias Westlund - http://mattiaswestlund.net
 //
@@ -621,10 +669,11 @@ volume=6
 locc14=40 hicc14=59
 sw_label=CC14 Normal Mod Wheel
 
-// mod wheel slows attack (PB)
-ampeg_attackcc1=0.5
-// mod wheel reduces volume (PB)
-gain_cc1=-15
+volume=-24
+// cc73 slows attack (PB)
+ampeg_attackcc73=0.5
+// cc73 reduces volume (PB)
+gain_cc73=-15
 // make staccato from sustain
 ampeg_attack=0.03
 ampeg_sustain=0
@@ -641,8 +690,16 @@ amp_random=1
 
 
 // fade in (PB)
-xfin_lovel=75
-xfin_hivel=127
+
+// cc1 (mod wheel) adjusts crossfade and volume (PB)
+xfin_locc1=64
+xfin_hicc1=127
+// this provides a smoother x-fade transition
+xf_cccurve=gain
+// cc1 controls gain after lowering volume of all samples by 24db (PB)
+gain_cc1=24
+// reduce velocity tracking, use cc1 for volume (PB)
+amp_veltrack=60
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e2-PB-loop.wav
@@ -651,7 +708,7 @@ hikey=f2
 pitch_keycenter=e2
 tune=55
 pan=-5
-volume=-8
+volume=-32
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-g2-PB-loop.wav
@@ -660,7 +717,7 @@ hikey=g#2
 pitch_keycenter=g2
 tune=0
 pan=10
-volume=-9
+volume=-33
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-a#2-PB-loop.wav
@@ -669,7 +726,7 @@ hikey=b2
 pitch_keycenter=a#2
 tune=25
 pan=20
-volume=-6.5
+volume=-30.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-c#3-PB-loop.wav
@@ -678,7 +735,7 @@ hikey=d3
 pitch_keycenter=c#3
 tune=-5
 pan=15
-volume=-9
+volume=-33
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e3-PB-loop.wav
@@ -687,7 +744,7 @@ hikey=f3
 pitch_keycenter=e3
 tune=0
 pan=10
-volume=-9.5
+volume=-33.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-g3-PB-loop.wav
@@ -696,7 +753,7 @@ hikey=g#3
 pitch_keycenter=g3
 tune=15
 pan=10
-volume=-7
+volume=-31
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-a#3-PB-loop.wav
@@ -705,7 +762,7 @@ hikey=b3
 pitch_keycenter=a#3
 tune=5
 pan=10
-volume=-9.5
+volume=-33.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-c#4-PB-loop.wav
@@ -714,7 +771,7 @@ hikey=d4
 pitch_keycenter=c#4
 tune=0
 pan=0
-volume=-9
+volume=-33
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e4-PB-loop.wav
@@ -723,7 +780,7 @@ hikey=f4
 pitch_keycenter=e4
 tune=-5
 pan=5
-volume=-7
+volume=-31
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-g4-PB-loop.wav
@@ -732,7 +789,7 @@ hikey=g#4
 pitch_keycenter=g4
 tune=-5
 pan=15
-volume=-10
+volume=-34
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-a#4-PB-loop.wav
@@ -741,7 +798,7 @@ hikey=b4
 pitch_keycenter=a#4
 tune=0
 pan=0
-volume=-9
+volume=-33
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-c#5-PB-loop.wav
@@ -750,7 +807,7 @@ hikey=d5
 pitch_keycenter=c#5
 tune=5
 pan=5
-volume=-13
+volume=-37
 
 <region>
 lokey=d#5
@@ -759,7 +816,7 @@ pitch_keycenter=e5
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e5-PB-loop.wav
 tune=0
 pan=20
-volume=-11
+volume=-35
 
 // ------------------ low velocity --------------------
 <group>
@@ -767,10 +824,11 @@ volume=-11
 locc14=40 hicc14=59
 sw_label=CC14 Normal Mod Wheel
 
-// mod wheel slows attack (PB)
-ampeg_attackcc1=0.5
-// mod wheel reduces volume (PB)
-gain_cc1=-15
+volume=-24
+// cc73 slows attack (PB)
+ampeg_attackcc73=0.5
+// cc73 reduces volume (PB)
+gain_cc73=-15
 // make staccato from sustain
 ampeg_attack=0.03
 ampeg_sustain=0
@@ -787,8 +845,16 @@ amp_random=1
 
 
 // fade out (PB)
-xfout_lovel=75
-xfout_hivel=127
+
+// cc1 (mod wheel) adjusts crossfade and volume (PB)
+xfout_locc1=64
+xfout_hicc1=127
+// this provides a smoother x-fade transition
+xf_cccurve=gain
+// cc1 controls gain after lowering volume of all samples by 24db (PB)
+gain_cc1=24
+// reduce velocity tracking, use cc1 for volume (PB)
+amp_veltrack=60
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e2-PB-loop.wav
@@ -797,7 +863,7 @@ hikey=f2
 pitch_keycenter=e2
 tune=5
 pan=10
-volume=-6
+volume=-30
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-g2-PB-loop.wav
@@ -806,7 +872,7 @@ hikey=g#2
 pitch_keycenter=g2
 tune=0
 pan=0
-volume=-11
+volume=-35
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-a#2-PB-loop.wav
@@ -815,7 +881,7 @@ hikey=b2
 pitch_keycenter=a#2
 tune=15
 pan=5
-volume=-3.5
+volume=-27.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-c#3-PB-loop.wav
@@ -824,7 +890,7 @@ hikey=d3
 pitch_keycenter=c#3
 tune=0
 pan=10
-volume=0
+volume=-24
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e3-PB-loop.wav
@@ -833,7 +899,7 @@ hikey=f3
 pitch_keycenter=e3
 tune=-5
 pan=-15
-volume=-4.5
+volume=-28.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-g3-PB-loop.wav
@@ -842,7 +908,7 @@ hikey=g#3
 pitch_keycenter=g3
 tune=0
 pan=-25
-volume=-5
+volume=-29
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-a#3-PB-loop.wav
@@ -851,7 +917,7 @@ hikey=b3
 pitch_keycenter=a#3
 tune=0
 pan=10
-volume=-7
+volume=-31
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-c#4-PB-loop.wav
@@ -860,7 +926,7 @@ hikey=d4
 pitch_keycenter=c#4
 tune=0
 pan=0
-volume=-5
+volume=-29
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e4-PB-loop.wav
@@ -869,7 +935,7 @@ hikey=f4
 pitch_keycenter=e4
 tune=0
 pan=10
-volume=-7
+volume=-31
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-g4-PB-loop.wav
@@ -878,7 +944,7 @@ hikey=g#4
 pitch_keycenter=g4
 tune=0
 pan=-10
-volume=-9
+volume=-33
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-a#4-PB-loop.wav
@@ -887,7 +953,7 @@ hikey=b4
 pitch_keycenter=a#4
 tune=0
 pan=5
-volume=-9
+volume=-33
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-c#5-PB-loop.wav
@@ -896,7 +962,7 @@ hikey=d5
 pitch_keycenter=c#5
 tune=0
 pan=0
-volume=-8
+volume=-32
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e5-PB-loop.wav
@@ -905,14 +971,15 @@ hikey=f5
 pitch_keycenter=e5
 tune=0
 pan=0
-volume=-6
+volume=-30
+
 
 
 
 
 
 //==============================================================
-// French Horn Section : Accent
+// French Horn Section : Accent + Dynamic Cross Fade
 //
 //   This is combination of:
 //
@@ -922,9 +989,17 @@ volume=-6
 //   by Paul Battersby - http://virtualplaying.com
 //
 //==============================================================
+<control>
+// set some sfz 2.0 default values
+// mod wheel
+set_cc1=64
+// pan (not used but Sforzando will default to 0 = 100%L when
+//  other CC settings are present)
+set_cc10=64
+
 
 //==============================================================
-// French Horn Section : Staccato
+// French Horn Section : Sustain + Dynamic Cross Fade
 //
 //   Horns Sus.sfz from Mattias Westlund - http://mattiaswestlund.net
 //
@@ -939,6 +1014,7 @@ volume=-6
 locc14=60 hicc14=79
 sw_label=CC14 Accent
 
+volume=-24
 // make staccato from sustain
 ampeg_attack=0.03
 ampeg_sustain=0
@@ -955,8 +1031,16 @@ amp_random=1
 
 
 // fade in (PB)
-xfin_lovel=75
-xfin_hivel=127
+
+// cc1 (mod wheel) adjusts crossfade and volume (PB)
+xfin_locc1=64
+xfin_hicc1=127
+// this provides a smoother x-fade transition
+xf_cccurve=gain
+// cc1 controls gain after lowering volume of all samples by 24db (PB)
+gain_cc1=24
+// reduce velocity tracking, use cc1 for volume (PB)
+amp_veltrack=60
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e2-PB-loop.wav
@@ -965,7 +1049,7 @@ hikey=f2
 pitch_keycenter=e2
 tune=55
 pan=-5
-volume=7
+volume=-17
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-g2-PB-loop.wav
@@ -974,7 +1058,7 @@ hikey=g#2
 pitch_keycenter=g2
 tune=0
 pan=10
-volume=6
+volume=-18
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-a#2-PB-loop.wav
@@ -983,7 +1067,7 @@ hikey=b2
 pitch_keycenter=a#2
 tune=25
 pan=20
-volume=8.5
+volume=-15.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-c#3-PB-loop.wav
@@ -992,7 +1076,7 @@ hikey=d3
 pitch_keycenter=c#3
 tune=-5
 pan=15
-volume=6
+volume=-18
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e3-PB-loop.wav
@@ -1001,7 +1085,7 @@ hikey=f3
 pitch_keycenter=e3
 tune=0
 pan=10
-volume=5.5
+volume=-18.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-g3-PB-loop.wav
@@ -1010,7 +1094,7 @@ hikey=g#3
 pitch_keycenter=g3
 tune=15
 pan=10
-volume=8
+volume=-16
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-a#3-PB-loop.wav
@@ -1019,7 +1103,7 @@ hikey=b3
 pitch_keycenter=a#3
 tune=5
 pan=10
-volume=5.5
+volume=-18.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-c#4-PB-loop.wav
@@ -1028,7 +1112,7 @@ hikey=d4
 pitch_keycenter=c#4
 tune=0
 pan=0
-volume=6
+volume=-18
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e4-PB-loop.wav
@@ -1037,7 +1121,7 @@ hikey=f4
 pitch_keycenter=e4
 tune=-5
 pan=5
-volume=8
+volume=-16
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-g4-PB-loop.wav
@@ -1046,7 +1130,7 @@ hikey=g#4
 pitch_keycenter=g4
 tune=-5
 pan=15
-volume=5
+volume=-19
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-a#4-PB-loop.wav
@@ -1055,7 +1139,7 @@ hikey=b4
 pitch_keycenter=a#4
 tune=0
 pan=0
-volume=6
+volume=-18
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-c#5-PB-loop.wav
@@ -1064,7 +1148,7 @@ hikey=d5
 pitch_keycenter=c#5
 tune=5
 pan=5
-volume=2
+volume=-22
 
 <region>
 lokey=d#5
@@ -1073,7 +1157,7 @@ pitch_keycenter=e5
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e5-PB-loop.wav
 tune=0
 pan=20
-volume=4
+volume=-20
 
 // ------------------ low velocity --------------------
 <group>
@@ -1081,6 +1165,7 @@ volume=4
 locc14=60 hicc14=79
 sw_label=CC14 Accent
 
+volume=-24
 // make staccato from sustain
 ampeg_attack=0.03
 ampeg_sustain=0
@@ -1097,8 +1182,16 @@ amp_random=1
 
 
 // fade out (PB)
-xfout_lovel=75
-xfout_hivel=127
+
+// cc1 (mod wheel) adjusts crossfade and volume (PB)
+xfout_locc1=64
+xfout_hicc1=127
+// this provides a smoother x-fade transition
+xf_cccurve=gain
+// cc1 controls gain after lowering volume of all samples by 24db (PB)
+gain_cc1=24
+// reduce velocity tracking, use cc1 for volume (PB)
+amp_veltrack=60
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e2-PB-loop.wav
@@ -1107,7 +1200,7 @@ hikey=f2
 pitch_keycenter=e2
 tune=5
 pan=10
-volume=9
+volume=-15
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-g2-PB-loop.wav
@@ -1116,7 +1209,7 @@ hikey=g#2
 pitch_keycenter=g2
 tune=0
 pan=0
-volume=4
+volume=-20
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-a#2-PB-loop.wav
@@ -1125,7 +1218,7 @@ hikey=b2
 pitch_keycenter=a#2
 tune=15
 pan=5
-volume=11.5
+volume=-12.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-c#3-PB-loop.wav
@@ -1134,7 +1227,7 @@ hikey=d3
 pitch_keycenter=c#3
 tune=0
 pan=10
-volume=15
+volume=-9
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e3-PB-loop.wav
@@ -1143,7 +1236,7 @@ hikey=f3
 pitch_keycenter=e3
 tune=-5
 pan=-15
-volume=10.5
+volume=-13.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-g3-PB-loop.wav
@@ -1152,7 +1245,7 @@ hikey=g#3
 pitch_keycenter=g3
 tune=0
 pan=-25
-volume=10
+volume=-14
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-a#3-PB-loop.wav
@@ -1161,7 +1254,7 @@ hikey=b3
 pitch_keycenter=a#3
 tune=0
 pan=10
-volume=8
+volume=-16
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-c#4-PB-loop.wav
@@ -1170,7 +1263,7 @@ hikey=d4
 pitch_keycenter=c#4
 tune=0
 pan=0
-volume=10
+volume=-14
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e4-PB-loop.wav
@@ -1179,7 +1272,7 @@ hikey=f4
 pitch_keycenter=e4
 tune=0
 pan=10
-volume=8
+volume=-16
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-g4-PB-loop.wav
@@ -1188,7 +1281,7 @@ hikey=g#4
 pitch_keycenter=g4
 tune=0
 pan=-10
-volume=6
+volume=-18
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-a#4-PB-loop.wav
@@ -1197,7 +1290,7 @@ hikey=b4
 pitch_keycenter=a#4
 tune=0
 pan=5
-volume=6
+volume=-18
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-c#5-PB-loop.wav
@@ -1206,7 +1299,7 @@ hikey=d5
 pitch_keycenter=c#5
 tune=0
 pan=0
-volume=7
+volume=-17
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e5-PB-loop.wav
@@ -1215,12 +1308,12 @@ hikey=f5
 pitch_keycenter=e5
 tune=0
 pan=0
-volume=9
+volume=-15
 
 
 
 //==============================================================
-// French Horn Section : Sustain
+// French Horn Section : Sustain + Dynamic Cross Fade
 //
 //   Horns Sus.sfz from Mattias Westlund - http://mattiaswestlund.net
 //
@@ -1235,6 +1328,7 @@ volume=9
 locc14=60 hicc14=79
 sw_label=CC14 Accent
 
+volume=-24
 // allow time for accent before sustain takes over
 delay=0.07
 ampeg_attack=0.4
@@ -1246,8 +1340,16 @@ amp_random=1
 ampeg_release=0.6
 
 // fade in (PB)
-xfin_lovel=75
-xfin_hivel=127
+
+// cc1 (mod wheel) adjusts crossfade and volume (PB)
+xfin_locc1=64
+xfin_hicc1=127
+// this provides a smoother x-fade transition
+xf_cccurve=gain
+// cc1 controls gain after lowering volume of all samples by 24db (PB)
+gain_cc1=24
+// reduce velocity tracking, use cc1 for volume (PB)
+amp_veltrack=60
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e2-PB-loop.wav
@@ -1256,7 +1358,7 @@ hikey=f2
 pitch_keycenter=e2
 tune=15
 pan=-5
-volume=5
+volume=-19
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-g2-PB-loop.wav
@@ -1265,7 +1367,7 @@ hikey=g#2
 pitch_keycenter=g2
 tune=0
 pan=-5
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-a#2-PB-loop.wav
@@ -1274,7 +1376,7 @@ hikey=b2
 pitch_keycenter=a#2
 tune=-5
 pan=5
-volume=4.5
+volume=-19.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-c#3-PB-loop.wav
@@ -1283,7 +1385,7 @@ hikey=d3
 pitch_keycenter=c#3
 tune=-5
 pan=0
-volume=2
+volume=-22
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e3-PB-loop.wav
@@ -1294,7 +1396,7 @@ hikey=f3
 pitch_keycenter=e3
 tune=10
 pan=5
-volume=3.5
+volume=-20.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-g3-PB-loop.wav
@@ -1303,7 +1405,7 @@ hikey=g#3
 pitch_keycenter=g3
 tune=0
 pan=5
-volume=2
+volume=-22
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-a#3-PB-loop.wav
@@ -1312,7 +1414,7 @@ hikey=b3
 pitch_keycenter=a#3
 tune=0
 pan=5
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-c#4-PB-loop.wav
@@ -1321,7 +1423,7 @@ hikey=d4
 pitch_keycenter=c#4
 tune=0
 pan=0
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e4-PB-loop.wav
@@ -1332,7 +1434,7 @@ hikey=f4
 pitch_keycenter=e4
 tune=-5
 pan=10
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-g4-PB-loop.wav
@@ -1343,7 +1445,7 @@ hikey=g#4
 pitch_keycenter=g4
 tune=-5
 pan=0
-volume=5
+volume=-19
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-a#4-PB-loop.wav
@@ -1354,7 +1456,7 @@ hikey=b4
 pitch_keycenter=a#4
 tune=0
 pan=0
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-c#5-PB-loop.wav
@@ -1365,7 +1467,7 @@ hikey=d5
 pitch_keycenter=c#5
 tune=5
 pan=5
-volume=3
+volume=-21
 
 <region>
 lokey=d#5
@@ -1376,7 +1478,7 @@ sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e5-PB-loop.wav
 delay=0.15
 tune=0
 pan=20
-volume=1
+volume=-23
 
 // ------------------ low velocity --------------------
 <group>
@@ -1384,6 +1486,7 @@ volume=1
 locc14=60 hicc14=79
 sw_label=CC14 Accent
 
+volume=-24
 ampeg_attack=0.4
 // randomize like a real player(PB)
 pitch_random=5
@@ -1393,8 +1496,16 @@ amp_random=1
 ampeg_release=0.6
 
 // fade out (PB)
-xfout_lovel=75
-xfout_hivel=127
+
+// cc1 (mod wheel) adjusts crossfade and volume (PB)
+xfout_locc1=64
+xfout_hicc1=127
+// this provides a smoother x-fade transition
+xf_cccurve=gain
+// cc1 controls gain after lowering volume of all samples by 24db (PB)
+gain_cc1=24
+// reduce velocity tracking, use cc1 for volume (PB)
+amp_veltrack=60
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e2-PB-loop.wav
@@ -1403,7 +1514,7 @@ hikey=f2
 pitch_keycenter=e2
 tune=0
 pan=0
-volume=8
+volume=-16
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-g2-PB-loop.wav
@@ -1412,7 +1523,7 @@ hikey=g#2
 pitch_keycenter=g2
 tune=0
 pan=0
-volume=4
+volume=-20
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-a#2-PB-loop.wav
@@ -1421,7 +1532,7 @@ hikey=b2
 pitch_keycenter=a#2
 tune=0
 pan=5
-volume=5.5
+volume=-18.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-c#3-PB-loop.wav
@@ -1430,7 +1541,7 @@ hikey=d3
 pitch_keycenter=c#3
 tune=0
 pan=-5
-volume=7
+volume=-17
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e3-PB-loop.wav
@@ -1441,7 +1552,7 @@ hikey=f3
 pitch_keycenter=e3
 tune=0
 pan=5
-volume=4.5
+volume=-19.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-g3-PB-loop.wav
@@ -1450,7 +1561,7 @@ hikey=g#3
 pitch_keycenter=g3
 tune=0
 pan=0
-volume=2
+volume=-22
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-a#3-PB-loop.wav
@@ -1459,7 +1570,7 @@ hikey=b3
 pitch_keycenter=a#3
 tune=0
 pan=10
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-c#4-PB-loop.wav
@@ -1468,7 +1579,7 @@ hikey=d4
 pitch_keycenter=c#4
 tune=0
 pan=0
-volume=5
+volume=-19
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e4-PB-loop.wav
@@ -1479,7 +1590,7 @@ hikey=f4
 pitch_keycenter=e4
 tune=0
 pan=10
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-g4-PB-loop.wav
@@ -1490,7 +1601,7 @@ hikey=g#4
 pitch_keycenter=g4
 tune=0
 pan=0
-volume=5
+volume=-19
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-a#4-PB-loop.wav
@@ -1501,7 +1612,7 @@ hikey=b4
 pitch_keycenter=a#4
 tune=0
 pan=10
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-c#5-PB-loop.wav
@@ -1512,7 +1623,7 @@ hikey=d5
 pitch_keycenter=c#5
 tune=0
 pan=0
-volume=3
+volume=-21
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e5-PB-loop.wav
@@ -1523,19 +1634,28 @@ hikey=f5
 pitch_keycenter=e5
 tune=0
 pan=50
-volume=6
+volume=-18
+
 
 
 
 
 //==============================================================
-// French Horn Section : Staccato
+// French Horn Section : Staccato + Dynamic Cross Fade
 //
 //   Horns Sus.sfz from Mattias Westlund - http://mattiaswestlund.net
 //
 //   modified by Paul Battersby - http://virtualplaying.com
 //
 //==============================================================
+<control>
+// set some sfz 2.0 default values
+// mod wheel
+set_cc1=64
+// pan (not used but Sforzando will default to 0 = 100%L when
+//  other CC settings are present)
+set_cc10=64
+
 
 // ------------------ high velocity --------------------
 
@@ -1544,6 +1664,7 @@ volume=6
 locc14=80 hicc14=99
 sw_label=CC14 Staccato
 
+volume=-24
 // make staccato from sustain
 ampeg_attack=0.03
 ampeg_sustain=0
@@ -1560,8 +1681,16 @@ amp_random=1
 
 
 // fade in (PB)
-xfin_lovel=75
-xfin_hivel=127
+
+// cc1 (mod wheel) adjusts crossfade and volume (PB)
+xfin_locc1=64
+xfin_hicc1=127
+// this provides a smoother x-fade transition
+xf_cccurve=gain
+// cc1 controls gain after lowering volume of all samples by 24db (PB)
+gain_cc1=24
+// reduce velocity tracking, use cc1 for volume (PB)
+amp_veltrack=60
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e2-PB-loop.wav
@@ -1570,7 +1699,7 @@ hikey=f2
 pitch_keycenter=e2
 tune=55
 pan=-5
-volume=7
+volume=-17
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-g2-PB-loop.wav
@@ -1579,7 +1708,7 @@ hikey=g#2
 pitch_keycenter=g2
 tune=0
 pan=10
-volume=6
+volume=-18
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-a#2-PB-loop.wav
@@ -1588,7 +1717,7 @@ hikey=b2
 pitch_keycenter=a#2
 tune=25
 pan=20
-volume=8.5
+volume=-15.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-c#3-PB-loop.wav
@@ -1597,7 +1726,7 @@ hikey=d3
 pitch_keycenter=c#3
 tune=-5
 pan=15
-volume=6
+volume=-18
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e3-PB-loop.wav
@@ -1606,7 +1735,7 @@ hikey=f3
 pitch_keycenter=e3
 tune=0
 pan=10
-volume=5.5
+volume=-18.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-g3-PB-loop.wav
@@ -1615,7 +1744,7 @@ hikey=g#3
 pitch_keycenter=g3
 tune=15
 pan=10
-volume=8
+volume=-16
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-a#3-PB-loop.wav
@@ -1624,7 +1753,7 @@ hikey=b3
 pitch_keycenter=a#3
 tune=5
 pan=10
-volume=5.5
+volume=-18.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-c#4-PB-loop.wav
@@ -1633,7 +1762,7 @@ hikey=d4
 pitch_keycenter=c#4
 tune=0
 pan=0
-volume=6
+volume=-18
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e4-PB-loop.wav
@@ -1642,7 +1771,7 @@ hikey=f4
 pitch_keycenter=e4
 tune=-5
 pan=5
-volume=8
+volume=-16
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-g4-PB-loop.wav
@@ -1651,7 +1780,7 @@ hikey=g#4
 pitch_keycenter=g4
 tune=-5
 pan=15
-volume=5
+volume=-19
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-a#4-PB-loop.wav
@@ -1660,7 +1789,7 @@ hikey=b4
 pitch_keycenter=a#4
 tune=0
 pan=0
-volume=6
+volume=-18
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-c#5-PB-loop.wav
@@ -1669,7 +1798,7 @@ hikey=d5
 pitch_keycenter=c#5
 tune=5
 pan=5
-volume=2
+volume=-22
 
 <region>
 lokey=d#5
@@ -1678,7 +1807,7 @@ pitch_keycenter=e5
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-ff-e5-PB-loop.wav
 tune=0
 pan=20
-volume=4
+volume=-20
 
 // ------------------ low velocity --------------------
 <group>
@@ -1686,6 +1815,7 @@ volume=4
 locc14=80 hicc14=99
 sw_label=CC14 Staccato
 
+volume=-24
 // make staccato from sustain
 ampeg_attack=0.03
 ampeg_sustain=0
@@ -1702,8 +1832,16 @@ amp_random=1
 
 
 // fade out (PB)
-xfout_lovel=75
-xfout_hivel=127
+
+// cc1 (mod wheel) adjusts crossfade and volume (PB)
+xfout_locc1=64
+xfout_hicc1=127
+// this provides a smoother x-fade transition
+xf_cccurve=gain
+// cc1 controls gain after lowering volume of all samples by 24db (PB)
+gain_cc1=24
+// reduce velocity tracking, use cc1 for volume (PB)
+amp_veltrack=60
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e2-PB-loop.wav
@@ -1712,7 +1850,7 @@ hikey=f2
 pitch_keycenter=e2
 tune=5
 pan=10
-volume=9
+volume=-15
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-g2-PB-loop.wav
@@ -1721,7 +1859,7 @@ hikey=g#2
 pitch_keycenter=g2
 tune=0
 pan=0
-volume=4
+volume=-20
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-a#2-PB-loop.wav
@@ -1730,7 +1868,7 @@ hikey=b2
 pitch_keycenter=a#2
 tune=15
 pan=5
-volume=11.5
+volume=-12.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-c#3-PB-loop.wav
@@ -1739,7 +1877,7 @@ hikey=d3
 pitch_keycenter=c#3
 tune=0
 pan=10
-volume=15
+volume=-9
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e3-PB-loop.wav
@@ -1748,7 +1886,7 @@ hikey=f3
 pitch_keycenter=e3
 tune=-5
 pan=-15
-volume=10.5
+volume=-13.5
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-g3-PB-loop.wav
@@ -1757,7 +1895,7 @@ hikey=g#3
 pitch_keycenter=g3
 tune=0
 pan=-25
-volume=10
+volume=-14
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-a#3-PB-loop.wav
@@ -1766,7 +1904,7 @@ hikey=b3
 pitch_keycenter=a#3
 tune=0
 pan=10
-volume=8
+volume=-16
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-c#4-PB-loop.wav
@@ -1775,7 +1913,7 @@ hikey=d4
 pitch_keycenter=c#4
 tune=0
 pan=0
-volume=10
+volume=-14
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e4-PB-loop.wav
@@ -1784,7 +1922,7 @@ hikey=f4
 pitch_keycenter=e4
 tune=0
 pan=10
-volume=8
+volume=-16
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-g4-PB-loop.wav
@@ -1793,7 +1931,7 @@ hikey=g#4
 pitch_keycenter=g4
 tune=0
 pan=-10
-volume=6
+volume=-18
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-a#4-PB-loop.wav
@@ -1802,7 +1940,7 @@ hikey=b4
 pitch_keycenter=a#4
 tune=0
 pan=5
-volume=6
+volume=-18
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-c#5-PB-loop.wav
@@ -1811,7 +1949,7 @@ hikey=d5
 pitch_keycenter=c#5
 tune=0
 pan=0
-volume=7
+volume=-17
 
 <region>
 sample=..\libs\Mattias-Westlund\Horns\Samples\horns-sus-mp-e5-PB-loop.wav
@@ -1820,7 +1958,8 @@ hikey=f5
 pitch_keycenter=e5
 tune=0
 pan=0
-volume=9
+volume=-15
+
 
 
 

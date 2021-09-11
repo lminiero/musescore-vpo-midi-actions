@@ -35,8 +35,8 @@ set_cc10=64  // pan (not used but Sforzando will default to 0 = 100%L when
              //  other CC settings are present)
 label_cc14=CC based switch
 set_cc14=40
-
-
+label_cc1=Mod Wheel
+set_cc1=20
 
 
 // -------------------------- high vel ----------------------------
