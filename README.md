@@ -52,8 +52,8 @@ If you're wondering why I chose CC 14 and not another controller, that's simply 
 
 The `VPO` folder contains a set of patches to react to CC 14 messages for changing articulations. They're basically an edited version of the pre-existing `-KS` patches, configured to react to CC14 instead using the [`loccN` and `hiccN` opcodes](https://sfzformat.com/opcodes/loccN). Since I only needed a subset of the available instruments (to go with the Symphonic Orchestra template in MuseScore), you won't find them all here, but just some, specifically:
 
-* Woodwinds: solo piccolo, flute, oboe, clarinet and bassoon;
-* Brass: solo french horn, trumpet, trombone and tuba;
+* Woodwinds: solo piccolo, solo/section for flute, oboe, clarinet and bassoon;
+* Brass: solo tuba, solo/section for french horn, trumpet and trombone (including DXF variants);
 * Strings: section for 1st violins, 2nd violins, violas, celli and contrabasses.
 
 If you need more instruments, please refer to the changes I made to obtain the existing ones to see how you can patch a `-KS` file.
@@ -98,7 +98,32 @@ As such, I wrote a simple aplication in node.js to add MIDI actions for the VPO 
 2. It looks for the instruments section, and adds a set of `<MidiAction>` voices from a configuration file on some instruments;
 3. It regenerates the XML file, and replaces the `.mscx` file in the `.mscz`.
 
-The end result is a file you can open in MuseScore, which for the supported instruments will have MIDI actions you can add via stave text. Please notice that this is very much experimental, and so you definitely want to make backups of every file you may choose to pass to this tool. I won't take any responsibility if this messes something up (like that brilliant score you've been working on for the past 15 years!).
+The end result is a file you can open in MuseScore, which for the supported instruments will have MIDI actions you can add via stave text. Please notice that this is very much experimental, and so you definitely want to make backups of every file you may choose to pass to this tool. I won't take any responsibility if this messes something up (like that brilliant score you've been working on for the past 15 years!). In my experience, for instance, it did break some scores that had tempo and/or key changes, meaning that the XML regeneration is probably not perfect. As such, you may either want to use the tool for fresh new scores, or modify the `.mscx` manually instead, inserting the following block (or parts of it) for the instruments you care about:
+
+	<MidiAction name="cc14_0">
+	  <descr>Send CC14 0-19 (sustain)</descr>
+	  <controller ctrl="14" value="0"/>
+	  </MidiAction>
+	<MidiAction name="cc14_1">
+	  <descr>Send CC14 20-39 (tremolo)</descr>
+	  <controller ctrl="14" value="20"/>
+	  </MidiAction>
+	<MidiAction name="cc14_2">
+	  <descr>Send CC14 40-59 (mod-wheel)</descr>
+	  <controller ctrl="14" value="40"/>
+	  </MidiAction>
+	<MidiAction name="cc14_3">
+	  <descr>Send CC14 60-79 (accent)</descr>
+	  <controller ctrl="14" value="60"/>
+	  </MidiAction>
+	<MidiAction name="cc14_4">
+	  <descr>Send CC14 80-99 (staccato)</descr>
+	  <controller ctrl="14" value="80"/>
+	  </MidiAction>
+	<MidiAction name="cc14_5">
+	  <descr>Send CC14 100-119 (pizzicato)</descr>
+	  <controller ctrl="14" value="100"/>
+	  </MidiAction>
 
 Installing is trivial (assuming you have node.js on your system), since you just need to issue an:
 
